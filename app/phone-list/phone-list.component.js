@@ -5,8 +5,10 @@ angular.
   module('phoneList').
   component('phoneList', {
     templateUrl: 'phone-list/phone-list.template.html',
-    controller: ['Phone',
-      function PhoneListController(Phone) {
+    controller: ['Phone', '$analytics',
+      function PhoneListController(Phone, $analytics) {
+        $analytics.pageTrack('/phones');
+        $analytics.eventTrack('eventName');
         this.phones = Phone.query();
         this.orderProp = 'age';
       }
